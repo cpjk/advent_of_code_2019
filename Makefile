@@ -1,4 +1,4 @@
 build:
 	go install
-run:
+run: build
 	advent_of_code_2019
