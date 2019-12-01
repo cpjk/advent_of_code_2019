@@ -21,10 +21,27 @@ What is the sum of the fuel requirements for all of the modules on your spacecra
 */
 
 func One() {
-	fmt.Println("One!")
-	numbersInt, err := util.InjestIntegerList("input.txt")
+	moduleMassesInt, err := util.InjestIntegerList("input.txt")
 	if err != nil {
 		log.Panic(err)
 	}
-	fmt.Println(numbersInt)
+	fmt.Println(moduleMassesInt)
+
+	totalFuel := totalFuelForModules(moduleMassesInt)
+	fmt.Println("total fuel: ", totalFuel)
 }
+
+func fuelForModule(moduleMass int) int {
+	fuel := (moduleMass / 3) - 2
+	return fuel
+}
+
+func totalFuelForModules(masses []int) int {
+	totalFuel := 0
+	for _, mass := range masses {
+		totalFuel += fuelForModule(mass)
+	}
+
+	return totalFuel
+}
+
